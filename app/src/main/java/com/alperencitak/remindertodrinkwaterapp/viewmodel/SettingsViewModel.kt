@@ -34,24 +34,11 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun toggleDarkMode(){
+    fun toggleSilentMode(){
         viewModelScope.launch {
             try {
                 if(_settings.value != null){
-                    settingsRepository.updateDarkMode(!_settings.value!!.isDarkMode)
-                    loadSettings()
-                }
-            }catch (e: Exception){
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun toggleSleepMode(){
-        viewModelScope.launch {
-            try {
-                if(_settings.value != null){
-                    settingsRepository.updateSleepMode(!_settings.value!!.isSleepMode)
+                    settingsRepository.updateSilentMode(!_settings.value!!.isSilentMode)
                     loadSettings()
                 }
             }catch (e: Exception){
@@ -67,10 +54,26 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun updateWaterQuantity(quantity: Float){
+    fun updateWaterQuantity(quantity: Int){
         viewModelScope.launch {
             settingsRepository.updateWaterQuantity(quantity)
             loadSettings()
+        }
+    }
+
+    fun increaseDrinkingWater(ml: Int){
+        viewModelScope.launch {
+            settings.value?.let {
+                settingsRepository.updateDrinkingWater(it.drinkingWater + ml)
+            }
+        }
+    }
+
+    fun decreaseDrinkingWater(ml: Int){
+        viewModelScope.launch {
+            settings.value?.let {
+                settingsRepository.updateDrinkingWater(it.drinkingWater - ml)
+            }
         }
     }
 
