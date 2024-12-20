@@ -77,4 +77,7 @@ dependencies {
 
     // Json Parsing
     implementation(libs.gson)
+
+    // Work
+    implementation(libs.androidx.work.runtime.ktx)
 }
