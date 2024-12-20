@@ -3,7 +3,6 @@ package com.alperencitak.remindertodrinkwaterapp.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alperencitak.remindertodrinkwaterapp.model.Settings
-import com.alperencitak.remindertodrinkwaterapp.model.TimeInterval
 import com.alperencitak.remindertodrinkwaterapp.repository.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,58 +21,35 @@ class SettingsViewModel @Inject constructor(
         loadSettings()
     }
 
-    private fun loadSettings(){
+    private fun loadSettings() {
         viewModelScope.launch {
             try {
-                settingsRepository.settings.collect{ settingsData ->
+                settingsRepository.settings.collect { settingsData ->
                     _settings.value = settingsData
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    fun toggleSilentMode(){
+    fun toggleSilentMode() {
         viewModelScope.launch {
             try {
-                if(_settings.value != null){
+                if (_settings.value != null) {
                     settingsRepository.updateSilentMode(!_settings.value!!.isSilentMode)
                     loadSettings()
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    fun updateTimeInterval(timeInterval: TimeInterval){
-        viewModelScope.launch {
-            settingsRepository.updateTimeInterval(timeInterval)
-            loadSettings()
-        }
-    }
-
-    fun updateWaterQuantity(quantity: Int){
+    fun updateWaterQuantity(quantity: Int) {
         viewModelScope.launch {
             settingsRepository.updateWaterQuantity(quantity)
             loadSettings()
-        }
-    }
-
-    fun increaseDrinkingWater(ml: Int){
-        viewModelScope.launch {
-            settings.value?.let {
-                settingsRepository.updateDrinkingWater(it.drinkingWater + ml)
-            }
-        }
-    }
-
-    fun decreaseDrinkingWater(ml: Int){
-        viewModelScope.launch {
-            settings.value?.let {
-                settingsRepository.updateDrinkingWater(it.drinkingWater - ml)
-            }
         }
     }
 
