@@ -22,6 +22,7 @@ class NotificationReceiver : BroadcastReceiver() {
             .build()
 
         val notificationManager = NotificationManagerCompat.from(context)
+        
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.POST_NOTIFICATIONS
@@ -29,6 +30,7 @@ class NotificationReceiver : BroadcastReceiver() {
         ) {
             return
         }
+
         notificationManager.notify(1, notification)
     }
 }
