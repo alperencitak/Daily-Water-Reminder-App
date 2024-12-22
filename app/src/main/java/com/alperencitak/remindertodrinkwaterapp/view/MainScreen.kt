@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,7 +50,7 @@ import com.alperencitak.remindertodrinkwaterapp.viewmodel.SettingsViewModel
 import java.util.Calendar
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(paddingValues: PaddingValues) {
     val settingsViewModel: SettingsViewModel = hiltViewModel()
     val settings by settingsViewModel.settings.collectAsState()
     var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
@@ -60,76 +61,47 @@ fun MainScreen(navController: NavController) {
     val currentMinute = Calendar.getInstance().get(Calendar.MINUTE)
     var drinkingGlass by remember { mutableIntStateOf(((currentHour - 9) * 60) + currentMinute / intervalMinutes) }
 
-    Scaffold (
-        content = { paddingValues ->
-            Box(modifier = Modifier.fillMaxSize()){
+    Box(modifier = Modifier.fillMaxSize()){
+        Image(
+            painter = painterResource(id = R.drawable.bg3),
+            contentDescription = "Background Image",
+            modifier = Modifier.matchParentSize(),
+            contentScale = ContentScale.Crop
+        )
+    }
+    Column(
+        modifier = Modifier.padding(paddingValues).fillMaxSize().padding(horizontal = 64.dp, vertical = 128.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "${drinkingGlass*200}ml / ${waterQuantity}ml",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 48.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            items(goalGLass){ index ->
+                val alpha = if(index+1 > drinkingGlass) 0.5f else 1f
                 Image(
-                    painter = painterResource(id = R.drawable.bg3),
-                    contentDescription = "Background Image",
-                    modifier = Modifier.matchParentSize(),
+                    painter = painterResource(id = R.drawable.glassofwater),
+                    contentDescription = "Glass Icon",
+                    modifier = Modifier.width(48.dp).height(48.dp).alpha(alpha),
                     contentScale = ContentScale.Crop
                 )
             }
-            Column(
-                modifier = Modifier.padding(paddingValues).fillMaxSize().padding(horizontal = 64.dp, vertical = 128.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "${drinkingGlass*200}ml / 2600ml",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = Color.Black,
-                    modifier = Modifier.padding(bottom = 12.dp)
-                )
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 48.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(goalGLass){ index ->
-                        val alpha = if(index+1 > drinkingGlass) 0.5f else 1f
-                        Image(
-                            painter = painterResource(id = R.drawable.glassofwater),
-                            contentDescription = "Glass Icon",
-                            modifier = Modifier.width(48.dp).height(48.dp).alpha(alpha),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                }
-                settings?.let {
-                    silentModeChecked = it.isSilentMode
-                    waterQuantity = it.waterQuantity
-                    goalGLass = waterQuantity / 200
-                    intervalMinutes = 840 / goalGLass
-                    drinkingGlass = (((currentHour - 9) * 60) + currentMinute) / intervalMinutes
-                }
-            }
-        },
-        bottomBar = {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                NavigationBar(
-                    modifier = Modifier.clip(RoundedCornerShape(topEnd = 48.dp, topStart = 48.dp)),
-                    containerColor = WaterBlue,
-                    tonalElevation = 8.dp
-                ){
-                    NavigationBarItem(
-                        selected = true,
-                        onClick = {  },
-                        icon = { Icon(painterResource(R.drawable.water), contentDescription = "Water Icon") },
-                        label = { Text(text = "Home", fontSize = 16.sp) }
-                    )
-                    NavigationBarItem(
-                        selected = false,
-                        onClick = { navController.navigate("settings") },
-                        icon = { Icon(painterResource(R.drawable.settings), contentDescription = "Settings Icon") },
-                        label = { Text(text = "Settings", fontSize = 16.sp) }
-                    )
-                }
-            }
         }
-    )
+        settings?.let {
+            silentModeChecked = it.isSilentMode
+            waterQuantity = it.waterQuantity
+            goalGLass = waterQuantity / 200
+            intervalMinutes = 840 / goalGLass
+            drinkingGlass = (((currentHour - 9) * 60) + currentMinute) / intervalMinutes
+        }
+    }
 }
