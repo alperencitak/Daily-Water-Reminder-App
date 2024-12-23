@@ -45,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -64,6 +65,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
     val poppins = FontFamily(
         Font(R.font.poppins_black, FontWeight.Normal)
     )
+
 
     Box(modifier = Modifier.fillMaxSize().background(LightWaterBlue))
     Column(
@@ -91,7 +93,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 var selectedCheckbox by remember { mutableIntStateOf(-1) }
                 var text by remember { mutableStateOf("") }
                 Text(
-                    text = "Calculate your daily water needs",
+                    text = stringResource(R.string.calculate_card_title),
                     fontSize = 21.sp,
                     fontFamily = poppins
                 )
@@ -105,7 +107,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Text(
-                        text = "Weight:",
+                        text = "${stringResource(R.string.weight)}:",
                         fontSize = 18.sp,
                         fontFamily = poppins,
                         modifier = Modifier.padding(end = 16.dp)
@@ -121,7 +123,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     )
                 }
                 Text(
-                    text = "Select your daily activity level:",
+                    text = stringResource(R.string.select_daily_activity),
                     fontSize = 18.sp,
                     fontFamily = poppins,
                     modifier = Modifier.padding(vertical = 6.dp)
@@ -137,7 +139,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         }
                     )
                     Text(
-                        text = "I do heavy sports",
+                        text = stringResource(R.string.activity_4),
                         fontSize = 17.sp,
                         fontFamily = poppins,
                         modifier = Modifier.padding(vertical = 6.dp)
@@ -154,7 +156,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         }
                     )
                     Text(
-                        text = "I do light sports",
+                        text = stringResource(R.string.activity_3),
                         fontSize = 17.sp,
                         fontFamily = poppins,
                         modifier = Modifier.padding(vertical = 6.dp)
@@ -171,7 +173,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         }
                     )
                     Text(
-                        text = "I move a lot during the day",
+                        text = stringResource(R.string.activity_2),
                         fontSize = 17.sp,
                         fontFamily = poppins,
                         modifier = Modifier.padding(vertical = 6.dp)
@@ -188,12 +190,14 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         }
                     )
                     Text(
-                        text = "I move little during the day",
+                        text = stringResource(R.string.activity_1),
                         fontSize = 17.sp,
                         fontFamily = poppins,
                         modifier = Modifier.padding(vertical = 6.dp)
                     )
                 }
+                val chooseActivityText = stringResource(R.string.choose_one_activity)
+                val enterValidWeight = stringResource(R.string.enter_valid_weight)
                 FilledTonalButton(
                     modifier = Modifier.padding(vertical = 6.dp).align(Alignment.CenterHorizontally),
                     onClick = {
@@ -201,15 +205,15 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                             if(selectedCheckbox != -1){
                                 "${kg.toInt() * perKgOfWater} ml/day"
                             }else{
-                                "Choose one activity!"
+                                chooseActivityText
                             }
                         }else{
-                            "Enter a valid weight!"
+                            enterValidWeight
                         }
                     }
                 ) {
                     Text(
-                        text = "Calculate",
+                        text = stringResource(R.string.calculate),
                         fontSize = 17.sp,
                         fontFamily = poppins
                     )
@@ -238,7 +242,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 var isError by remember { mutableStateOf(false) }
                 var showTick by remember { mutableStateOf(false) }
                 Text(
-                    text = "Manually set the amount of water per day",
+                    text = stringResource(R.string.manually_set_water_quantity),
                     fontSize = 21.sp,
                     fontFamily = poppins
                 )
@@ -257,7 +261,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                             value = it
                             isError = false
                         },
-                        label = { Text(text = "Enter value", fontFamily = poppins) },
+                        label = { Text(text = stringResource(R.string.enter_value), fontFamily = poppins) },
                         singleLine = true,
                         shape = RoundedCornerShape(8.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -283,7 +287,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         }
                     ) {
                         Text(
-                            text = "SET",
+                            text = stringResource(R.string.set),
                             fontSize = 16.sp,
                             fontFamily = poppins
                         )
@@ -318,7 +322,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "MUTE NOTIFICATIONS",
+                    text = stringResource(R.string.mute_notifications),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     fontFamily = poppins,

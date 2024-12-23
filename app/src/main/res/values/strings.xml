@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">ReminderToDrinkWaterApp</string>
+    <string name="app_name">Daily Water Reminder</string>
+    <string name="calculate_card_title">Calculate your daily water needs</string>
+    <string name="weight">Weight</string>
+    <string name="select_daily_activity">Select your daily activity level:</string>
+    <string name="activity_1">I move little during the day</string>
+    <string name="activity_2">I move a lot during the day</string>
+    <string name="activity_3">I do light sports</string>
+    <string name="activity_4">I do heavy sports</string>
+    <string name="choose_one_activity">"Choose one activity!"</string>
+    <string name="enter_valid_weight">"Enter a valid weight!"</string>
+    <string name="calculate">Calculate</string>
+    <string name="manually_set_water_quantity">Manually set the amount of water per day</string>
+    <string name="enter_value">Enter value</string>
+    <string name="set">SET</string>
+    <string name="mute_notifications">MUTE NOTIFICATIONS</string>
+    <string name="reminder_notifications">Reminder Notifications</string>
 </resources>

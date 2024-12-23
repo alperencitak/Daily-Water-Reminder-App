@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Günlük Su Hatırlatıcı</string>
+    <string name="calculate_card_title">Günlük su ihtiyacınızı hesaplayın</string>
+    <string name="weight">Kilo</string>
+    <string name="select_daily_activity">Günlük aktivite seviyenizi seçin:</string>
+    <string name="activity_1">Gün boyunca çok az hareket ederim</string>
+    <string name="activity_2">Gün boyunca çok hareket ederim</string>
+    <string name="activity_3">Hafif spor yaparım</string>
+    <string name="activity_4">Ağır spor yaparım</string>
+    <string name="choose_one_activity">"Bir aktivite seçin!"</string>
+    <string name="enter_valid_weight">"Geçerli bir kilo girin!"</string>
+    <string name="calculate">Hesapla</string>
+    <string name="manually_set_water_quantity">Günlük su miktarını manuel olarak ayarla</string>
+    <string name="enter_value">Değer girin</string>
+    <string name="set">AYARLA</string>
+    <string name="mute_notifications">BİLDİRİMLERİ SUSTUR</string>
+    <string name="reminder_notifications">Hatırlatma Bildirimleri</string>
+</resources>

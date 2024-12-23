@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import androidx.annotation.RequiresApi
 import com.alperencitak.remindertodrinkwaterapp.notification.cancelReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.notification.scheduleReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.repository.SettingsRepository
@@ -12,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -20,6 +22,7 @@ class App : Application() {
     @Inject
     lateinit var settingsRepository: SettingsRepository
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
@@ -46,14 +49,31 @@ class App : Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "reminder_notifications",
-                "Reminder Notifications",
+                getChannelName(),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Reminders to drink water every 10 minutes."
+                description = getChannelDescription()
             }
 
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager?.createNotificationChannel(channel)
         }
     }
+
+    private fun getChannelName(): String {
+        return if (Locale.getDefault().language == "tr") {
+            "Hatırlatma Bildirimleri"
+        } else {
+            "Reminder Notifications"
+        }
+    }
+
+    private fun getChannelDescription(): String {
+        return if (Locale.getDefault().language == "tr") {
+            "Her 10 dakikada su içme hatırlatmaları."
+        } else {
+            "Reminders to drink water every 10 minutes."
+        }
+    }
+
 }
