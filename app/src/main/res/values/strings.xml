@@ -15,4 +15,13 @@
     <string name="set">SET</string>
     <string name="mute_notifications">MUTE NOTIFICATIONS</string>
     <string name="reminder_notifications">Reminder Notifications</string>
+    <string name="bob_lol">Bob is happy because he drinks enough water every day.</string>
+    <string name="bob_angel">A sip of water says more than a thousand words: Health, peace, energy.</string>
+    <string name="bob_surprise">Have you heard? Drinking enough water slows down the aging process of the skin.</string>
+    <string name="bob_cry">*Bob\'s crying because you don\'t drink water*</string>
+    <string name="bob_anime">Will you drink a glass of water for me?</string>
+    <string name="bob_crazy">I bet you can\'t drink a glass of water in 20 seconds!</string>
+    <string name="bob_love">I admire your determination to drink water.</string>
+    <string name="bob_neutral">Drinking water is like exercising, but much less tiring!</string>
+    <string name="bob_sleep">*Quiet! Bob\'s asleep.*</string>
 </resources>

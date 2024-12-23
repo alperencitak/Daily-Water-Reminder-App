@@ -16,4 +16,13 @@
     <string name="set">AYARLA</string>
     <string name="mute_notifications">BİLDİRİMLERİ SUSTUR</string>
     <string name="reminder_notifications">Hatırlatma Bildirimleri</string>
+    <string name="bob_lol">Bob mutlu çünkü her gün yeterince su içiyor.</string>
+    <string name="bob_angel">Bir yudum su, bin kelimeden daha çok şey anlatır: Sağlık, huzur, enerji.</string>
+    <string name="bob_surprise">Duydun mu? Yeterli su içmek, cildin yaşlanma sürecini yavaşlatıyormuş.</string>
+    <string name="bob_cry">*Bob su içmediğin için ağlıyor*</string>
+    <string name="bob_anime">Benim için bir bardak su içer misin?</string>
+    <string name="bob_crazy">Bahse girerim 20 saniyede 1 bardak su içemezsin!</string>
+    <string name="bob_love">Su içme konusundaki kararlılığına hayranım.</string>
+    <string name="bob_neutral">Su içmek spor yapmak gibi, ama çok daha az yorucu!</string>
+    <string name="bob_sleep">*Sessiz ol! Bob uyuyor.*</string>
 </resources>
