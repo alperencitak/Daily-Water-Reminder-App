@@ -1,7 +1,6 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,14 +18,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -35,7 +31,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,7 +39,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -62,8 +56,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
     val settingsViewModel: SettingsViewModel = hiltViewModel()
     val settings by settingsViewModel.settings.collectAsState()
     var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
-    val poppins = FontFamily(
-        Font(R.font.poppins_black, FontWeight.Normal)
+    val nunito = FontFamily(
+        Font(R.font.nunito_black, FontWeight.Normal)
     )
 
 
@@ -72,7 +66,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
         modifier = Modifier
             .padding(paddingValues)
             .fillMaxSize()
-            .padding(horizontal = 16.dp, vertical = 32.dp)
+            .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -95,7 +89,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 Text(
                     text = stringResource(R.string.calculate_card_title),
                     fontSize = 21.sp,
-                    fontFamily = poppins
+                    fontFamily = nunito
                 )
                 HorizontalDivider(
                     color = Color.Gray,
@@ -109,14 +103,14 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = "${stringResource(R.string.weight)}:",
                         fontSize = 18.sp,
-                        fontFamily = poppins,
+                        fontFamily = nunito,
                         modifier = Modifier.padding(end = 16.dp)
                     )
                     OutlinedTextField(
                         modifier = Modifier.width(108.dp),
                         value = kg,
                         onValueChange = { kg = it },
-                        label = { Text(text = "KG", fontFamily = poppins) },
+                        label = { Text(text = "KG", fontFamily = nunito) },
                         singleLine = true,
                         shape = RoundedCornerShape(8.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -125,7 +119,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 Text(
                     text = stringResource(R.string.select_daily_activity),
                     fontSize = 18.sp,
-                    fontFamily = poppins,
+                    fontFamily = nunito,
                     modifier = Modifier.padding(vertical = 6.dp)
                 )
                 Row(
@@ -141,7 +135,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = stringResource(R.string.activity_4),
                         fontSize = 17.sp,
-                        fontFamily = poppins,
+                        fontFamily = nunito,
                         modifier = Modifier.padding(vertical = 6.dp)
                     )
                 }
@@ -158,7 +152,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = stringResource(R.string.activity_3),
                         fontSize = 17.sp,
-                        fontFamily = poppins,
+                        fontFamily = nunito,
                         modifier = Modifier.padding(vertical = 6.dp)
                     )
                 }
@@ -175,7 +169,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = stringResource(R.string.activity_2),
                         fontSize = 17.sp,
-                        fontFamily = poppins,
+                        fontFamily = nunito,
                         modifier = Modifier.padding(vertical = 6.dp)
                     )
                 }
@@ -192,7 +186,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = stringResource(R.string.activity_1),
                         fontSize = 17.sp,
-                        fontFamily = poppins,
+                        fontFamily = nunito,
                         modifier = Modifier.padding(vertical = 6.dp)
                     )
                 }
@@ -215,13 +209,13 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     Text(
                         text = stringResource(R.string.calculate),
                         fontSize = 17.sp,
-                        fontFamily = poppins
+                        fontFamily = nunito
                     )
                 }
                 Text(
                     text = text,
                     fontSize = 20.sp,
-                    fontFamily = poppins,
+                    fontFamily = nunito,
                     modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 4.dp)
                 )
             }
@@ -244,7 +238,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 Text(
                     text = stringResource(R.string.manually_set_water_quantity),
                     fontSize = 21.sp,
-                    fontFamily = poppins
+                    fontFamily = nunito
                 )
                 HorizontalDivider(
                     color = Color.Gray,
@@ -261,7 +255,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                             value = it
                             isError = false
                         },
-                        label = { Text(text = stringResource(R.string.enter_value), fontFamily = poppins) },
+                        label = { Text(text = stringResource(R.string.enter_value), fontFamily = nunito) },
                         singleLine = true,
                         shape = RoundedCornerShape(8.dp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -289,7 +283,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         Text(
                             text = stringResource(R.string.set),
                             fontSize = 16.sp,
-                            fontFamily = poppins
+                            fontFamily = nunito
                         )
                     }
                     if(showTick){
@@ -325,7 +319,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     text = stringResource(R.string.mute_notifications),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    fontFamily = poppins,
+                    fontFamily = nunito,
                     color = Color.Black,
                     modifier = Modifier.padding(start = 12.dp)
                 )

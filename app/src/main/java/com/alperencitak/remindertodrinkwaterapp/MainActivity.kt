@@ -16,6 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
@@ -57,6 +60,9 @@ class MainActivity : ComponentActivity() {
 fun ScaffoldWithNavBar(){
     val navController = rememberNavController()
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+    val nunito = FontFamily(
+        Font(R.font.nunito_black, FontWeight.Normal)
+    )
     Scaffold(
         bottomBar = {
             NavigationBar(
@@ -72,7 +78,7 @@ fun ScaffoldWithNavBar(){
                         }
                     },
                     icon = { Icon(painterResource(R.drawable.water), contentDescription = "Water Icon") },
-                    label = { Text(text = "Home", fontSize = 16.sp) }
+                    label = { Text(text = "Home", fontFamily = nunito, fontSize = 16.sp) }
                 )
                 NavigationBarItem(
                     selected = currentRoute == "settings",
@@ -82,7 +88,7 @@ fun ScaffoldWithNavBar(){
                         }
                     },
                     icon = { Icon(painterResource(R.drawable.settings), contentDescription = "Settings Icon") },
-                    label = { Text(text = "Settings", fontSize = 16.sp) }
+                    label = { Text(text = "Settings", fontFamily = nunito, fontSize = 16.sp) }
                 )
             }
         }
