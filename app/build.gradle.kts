@@ -6,6 +6,9 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+val ADMOB_APP_ID = if (project.hasProperty("ADMOB_APP_ID")) project.property("ADMOB_APP_ID") as String else ""
+val ADMOB_AD_UNIT_ID = if (project.hasProperty("ADMOB_AD_UNIT_ID")) project.property("ADMOB_AD_UNIT_ID") as String else ""
+
 android {
     namespace = "com.alperencitak.remindertodrinkwaterapp"
     compileSdk = 35
@@ -16,8 +19,9 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["ADMOB_APP_ID"] = ADMOB_APP_ID
+        buildConfigField("String", "ADMOB_AD_UNIT_ID", ADMOB_AD_UNIT_ID)
     }
 
     buildTypes {
@@ -38,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -81,5 +86,8 @@ dependencies {
 
     // Work
     implementation(libs.androidx.work.runtime.ktx)
+
+    // AdMob
+    implementation(libs.play.services.ads)
 
 }

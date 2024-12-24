@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi
 import com.alperencitak.remindertodrinkwaterapp.notification.cancelReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.notification.scheduleReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.repository.SettingsRepository
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +26,7 @@ class App : Application() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
+        MobileAds.initialize(this)
         createNotificationChannel()
         CoroutineScope(Dispatchers.Default).launch {
             settingsRepository.settings.collect{ setting ->

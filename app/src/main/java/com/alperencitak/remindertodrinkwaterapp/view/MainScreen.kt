@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.alperencitak.remindertodrinkwaterapp.R
+import com.alperencitak.remindertodrinkwaterapp.component.BannerAdView
 import com.alperencitak.remindertodrinkwaterapp.viewmodel.SettingsViewModel
 import java.util.Calendar
 
@@ -75,24 +76,27 @@ fun MainScreen(paddingValues: PaddingValues) {
             contentScale = ContentScale.Crop
         )
     }
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 64.dp, horizontal = 32.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        val bobEntry = bobMap.entries.random()
-        Image(
-            painter = painterResource(bobEntry.value),
-            contentDescription = "Cry Bob Gif",
-            modifier = Modifier
-                .size(75.dp),
-            contentScale = ContentScale.Fit
-        )
-        Text(
-            text = bobEntry.key,
-            fontSize = 17.sp,
-            fontFamily = nunito,
-            modifier = Modifier.padding(start = 16.dp)
-        )
+    Column {
+        BannerAdView(Modifier.fillMaxWidth())
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp, horizontal = 32.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val bobEntry = bobMap.entries.random()
+            Image(
+                painter = painterResource(bobEntry.value),
+                contentDescription = "Cry Bob Gif",
+                modifier = Modifier
+                    .size(75.dp),
+                contentScale = ContentScale.Fit
+            )
+            Text(
+                text = bobEntry.key,
+                fontSize = 17.sp,
+                fontFamily = nunito,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
     }
     Column(
         modifier = Modifier
