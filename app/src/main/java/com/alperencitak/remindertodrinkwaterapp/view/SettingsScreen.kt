@@ -195,7 +195,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 FilledTonalButton(
                     modifier = Modifier.padding(vertical = 6.dp).align(Alignment.CenterHorizontally),
                     onClick = {
-                        text = if( kg.isNotEmpty() && kg.toInt() in 20..200){
+                        text = if( kg.isNotEmpty() && kg.toInt() in 30..170){
                             if(selectedCheckbox != -1){
                                 "${kg.toInt() * perKgOfWater} ml/day"
                             }else{
@@ -230,7 +230,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
             )
         ){
             Column(
-                modifier = Modifier.padding(horizontal = 14.dp, vertical = 16.dp)
+                modifier = Modifier.padding(horizontal = 14.dp, vertical = 32.dp)
             ){
                 var value by remember { mutableStateOf("") }
                 var isError by remember { mutableStateOf(false) }
@@ -271,7 +271,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     FilledTonalButton(
                         modifier = Modifier.padding(vertical = 6.dp, horizontal = 10.dp),
                         onClick = {
-                            if( value.isNotEmpty() && value.toInt() in 900..7200){
+                            if( value.isNotEmpty() && value.toInt() in 900..6120){
                                 settingsViewModel.updateWaterQuantity(value.toInt())
                                 showTick = true
                                 value = ""
@@ -296,49 +296,49 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 }
             }
         }
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(32.dp))
-                .padding(top = 16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White
-            )
-        ) {
-
-            settings?.let {
-                silentModeChecked = it.isSilentMode
-            }
-
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(R.string.mute_notifications),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    fontFamily = nunito,
-                    color = Color.Black,
-                    modifier = Modifier.padding(start = 12.dp)
-                )
-                Switch(
-                    modifier = Modifier.padding(end = 12.dp),
-                    checked = silentModeChecked,
-                    onCheckedChange = {
-                        silentModeChecked = it
-                        settingsViewModel.toggleSilentMode()
-                    },
-                    thumbContent = {
-                        Icon(
-                            imageVector = if (silentModeChecked) Icons.Default.Check else Icons.Default.Clear,
-                            contentDescription = "Check Icon",
-                            modifier = Modifier.size(22.dp)
-                        )
-                    }
-                )
-            }
-        }
+//        Card(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .clip(RoundedCornerShape(32.dp))
+//                .padding(top = 16.dp),
+//            colors = CardDefaults.cardColors(
+//                containerColor = Color.White
+//            )
+//        ) {
+//
+//            settings?.let {
+//                silentModeChecked = it.isSilentMode
+//            }
+//
+//            Row(
+//                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 16.dp),
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+//            ) {
+//                Text(
+//                    text = stringResource(R.string.mute_notifications),
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 18.sp,
+//                    fontFamily = nunito,
+//                    color = Color.Black,
+//                    modifier = Modifier.padding(start = 12.dp)
+//                )
+//                Switch(
+//                    modifier = Modifier.padding(end = 12.dp),
+//                    checked = silentModeChecked,
+//                    onCheckedChange = {
+//                        silentModeChecked = it
+//                        settingsViewModel.toggleSilentMode()
+//                    },
+//                    thumbContent = {
+//                        Icon(
+//                            imageVector = if (silentModeChecked) Icons.Default.Check else Icons.Default.Clear,
+//                            contentDescription = "Check Icon",
+//                            modifier = Modifier.size(22.dp)
+//                        )
+//                    }
+//                )
+//            }
+//        }
     }
 }

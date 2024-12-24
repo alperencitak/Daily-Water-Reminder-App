@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -76,11 +78,17 @@ fun MainScreen(paddingValues: PaddingValues) {
             contentScale = ContentScale.Crop
         )
     }
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 64.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         BannerAdView(Modifier.fillMaxWidth())
         Row(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp, horizontal = 32.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth().padding(top = 32.dp, bottom = 64.dp, start = 32.dp, end = 32.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
             val bobEntry = bobMap.entries.random()
             Image(
@@ -97,15 +105,6 @@ fun MainScreen(paddingValues: PaddingValues) {
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
-    }
-    Column(
-        modifier = Modifier
-            .padding(paddingValues)
-            .fillMaxSize()
-            .padding(horizontal = 64.dp, vertical = 128.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
         Text(
             text = "${drinkingGlass * 200}ml / ${waterQuantity}ml",
             fontWeight = FontWeight.Bold,
@@ -114,22 +113,26 @@ fun MainScreen(paddingValues: PaddingValues) {
             fontFamily = nunito,
             modifier = Modifier.padding(bottom = 12.dp)
         )
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 48.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        Column(
+            modifier = Modifier.padding(horizontal = 32.dp)
         ) {
-            items(goalGLass) { index ->
-                val alpha = if (index + 1 > drinkingGlass) 0.5f else 1f
-                Image(
-                    painter = painterResource(id = R.drawable.glassofwater),
-                    contentDescription = "Glass Icon",
-                    modifier = Modifier
-                        .width(48.dp)
-                        .height(48.dp)
-                        .alpha(alpha),
-                    contentScale = ContentScale.Fit
-                )
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = 48.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(goalGLass) { index ->
+                    val alpha = if (currentHour !in 9..23 || index + 1 > drinkingGlass) 0.5f else 1f
+                    Image(
+                        painter = painterResource(id = R.drawable.glassofwater),
+                        contentDescription = "Glass Icon",
+                        modifier = Modifier
+                            .width(48.dp)
+                            .height(48.dp)
+                            .alpha(alpha),
+                        contentScale = ContentScale.Fit
+                    )
+                }
             }
         }
         settings?.let {
