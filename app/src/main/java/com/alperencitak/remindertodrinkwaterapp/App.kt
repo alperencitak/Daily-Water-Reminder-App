@@ -28,6 +28,10 @@ class App : Application() {
         super.onCreate()
         MobileAds.initialize(this)
         createNotificationChannel()
+
+        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+        val isScheduled = sharedPreferences.getBoolean("is_scheduled", false)
+
         CoroutineScope(Dispatchers.Default).launch {
             settingsRepository.settings.collect{ setting ->
 
@@ -35,9 +39,15 @@ class App : Application() {
 
                 if(!setting.isSilentMode || currentHour in 9..23){
 
-                    val intervalMinutes = 840 / (setting.waterQuantity / 200)
+                    if(!isScheduled){
+                        val intervalMinutes = 840 / (setting.waterQuantity / 200)
+                        println("test")
+                        scheduleReminderNotification(this@App, intervalMinutes)
 
-                    scheduleReminderNotification(this@App, intervalMinutes)
+                        sharedPreferences.edit()
+                            .putBoolean("is_scheduled", true)
+                            .apply()
+                    }
 
                 }else{
                     cancelReminderNotification(this@App)
