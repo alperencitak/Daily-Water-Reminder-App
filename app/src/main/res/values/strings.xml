@@ -15,13 +15,32 @@
     <string name="set">SET</string>
     <string name="mute_notifications">MUTE NOTIFICATIONS</string>
     <string name="reminder_notifications">Reminder Notifications</string>
-    <string name="bob_lol">Bob is happy because he drinks enough water every day.</string>
+    <string name="bob_lol">*Bob is happy because he drinks enough water every day.*</string>
+    <string name="bob_lol2">Drink a glass of water. You\'ll thank me!</string>
+    <string name="bob_lol3">Just one glass of water. Amazing!</string>
     <string name="bob_angel">A sip of water says more than a thousand words: Health, peace, energy.</string>
-    <string name="bob_surprise">Have you heard? Drinking enough water slows down the aging process of the skin.</string>
-    <string name="bob_cry">*Bob\'s crying because you don\'t drink water*</string>
+    <string name="bob_angel2">*One glass of water will refresh you. Bob always remembers this.*</string>
+    <string name="bob_angel3">Drinking water refreshes the soul, come on, drink a glass!</string>
+    <string name="bob_surprise">Did you know? Drinking enough water slows down the aging process of your skin.</string>
+    <string name="bob_surprise2">Drinking water can speed up your metabolism by up to 30%, which increases calorie burning.</string>
+    <string name="bob_surprise3">Drinking water can reduce headaches because dehydration often causes them.</string>
+    <string name="bob_cry">*Bob is sad because you did not drink water*</string>
+    <string name="bob_cry2">*Bob is sad because he forgot to drink water. Drink a glass so Bob can be happy!*</string>
+    <string name="bob_cry3">I forgot to drink water!</string>
     <string name="bob_anime">Will you drink a glass of water for me?</string>
+    <string name="bob_anime2">Excuse me, where can I get some water from?</string>
+    <string name="bob_anime3">I already drank my glass of water.</string>
     <string name="bob_crazy">I bet you can\'t drink a glass of water in 20 seconds!</string>
+    <string name="bob_crazy2">I drank more water than you today.</string>
+    <string name="bob_crazy3">I\'ll reach my goal before you today.</string>
     <string name="bob_love">I admire your determination to drink water.</string>
-    <string name="bob_neutral">Drinking water is like exercising, but much less tiring!</string>
-    <string name="bob_sleep">*Quiet! Bob\'s asleep.*</string>
+    <string name="bob_love2">I really love water.</string>
+    <string name="bob_love3">Water is very precious to me!</string>
+    <string name="bob_neutral">Drinking water is like exercising, but much less exhausting!</string>
+    <string name="bob_neutral2">Your body needs water.</string>
+    <string name="bob_neutral3">I am Bob. I drink water.</string>
+    <string name="bob_sleep">*Shh! Bob is sleeping.*</string>
+    <string name="bob_sleep2">*Bob drank water before going to sleep.*</string>
+    <string name="bob_sleep3">*zzzZZZ*</string>
+
 </resources>
