@@ -53,4 +53,11 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun updateDrinkingGlass(value: Int){
+        viewModelScope.launch {
+            settingsRepository.updateDrinkingGlass(value)
+            loadSettings()
+        }
+    }
+
 }

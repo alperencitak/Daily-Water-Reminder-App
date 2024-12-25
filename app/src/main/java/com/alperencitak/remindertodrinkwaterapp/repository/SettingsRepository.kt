@@ -25,13 +25,15 @@ class SettingsRepository @Inject constructor(
     private object SettingsKeys{
         val SILENT_MODE = booleanPreferencesKey("silent_mode")
         val WATER_QUANTITY = intPreferencesKey("water_quantity")
+        val DRINKING_GLASS = intPreferencesKey("drinking_glass")
     }
 
     val settings: Flow<Settings> = context.dataStore.data
         .map { preferences ->
             Settings(
                 isSilentMode = preferences[SettingsKeys.SILENT_MODE] ?: false,
-                waterQuantity = preferences[SettingsKeys.WATER_QUANTITY] ?: 2400
+                waterQuantity = preferences[SettingsKeys.WATER_QUANTITY] ?: 2400,
+                drinkingGlass = preferences[SettingsKeys.DRINKING_GLASS] ?: 0
             )
         }
 
@@ -47,4 +49,9 @@ class SettingsRepository @Inject constructor(
         }
     }
 
+    suspend fun updateDrinkingGlass(value: Int){
+        context.dataStore.edit { prefences ->
+            prefences[SettingsKeys.DRINKING_GLASS] = value
+        }
+    }
 }

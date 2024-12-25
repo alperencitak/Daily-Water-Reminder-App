@@ -1,6 +1,7 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -51,20 +55,47 @@ fun MainScreen(paddingValues: PaddingValues) {
     var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
     var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
     val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-    val currentMinute = Calendar.getInstance().get(Calendar.MINUTE)
-    var drinkingGlass by remember { mutableIntStateOf(((currentHour - 9) * 60) + currentMinute / intervalMinutes) }
+    var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
 
     val bobMap = mapOf(
-        stringResource(R.string.bob_lol) to R.drawable.bob_lol,
-        stringResource(R.string.bob_angel) to R.drawable.bob_angel,
-        stringResource(R.string.bob_surprise) to R.drawable.bob_surprise,
-        stringResource(R.string.bob_cry) to R.drawable.bob_cry,
-        stringResource(R.string.bob_anime) to R.drawable.bob_anime,
-        stringResource(R.string.bob_crazy) to R.drawable.bob_crazy,
-        stringResource(R.string.bob_love) to R.drawable.bob_love,
-        stringResource(R.string.bob_neutral) to R.drawable.bob_neutral,
-        stringResource(R.string.bob_sleep) to R.drawable.bob_sleep
+        listOf(
+            stringResource(R.string.bob_lol), stringResource(R.string.bob_lol2),
+            stringResource(R.string.bob_lol3)
+        ) to R.drawable.bob_lol,
+        listOf(
+            stringResource(R.string.bob_angel), stringResource(R.string.bob_angel2),
+            stringResource(R.string.bob_angel3)
+        ) to R.drawable.bob_angel,
+        listOf(
+            stringResource(R.string.bob_surprise), stringResource(R.string.bob_surprise2),
+            stringResource(R.string.bob_surprise3)
+        ) to R.drawable.bob_surprise,
+        listOf(
+            stringResource(R.string.bob_cry), stringResource(R.string.bob_cry2),
+            stringResource(R.string.bob_cry3)
+        ) to R.drawable.bob_cry,
+        listOf(
+            stringResource(R.string.bob_anime), stringResource(R.string.bob_anime2),
+            stringResource(R.string.bob_anime3)
+        ) to R.drawable.bob_anime,
+        listOf(
+            stringResource(R.string.bob_crazy), stringResource(R.string.bob_crazy2),
+            stringResource(R.string.bob_crazy3)
+        ) to R.drawable.bob_crazy,
+        listOf(
+            stringResource(R.string.bob_love), stringResource(R.string.bob_love2),
+            stringResource(R.string.bob_love3)
+        ) to R.drawable.bob_love,
+        listOf(
+            stringResource(R.string.bob_neutral), stringResource(R.string.bob_neutral2),
+            stringResource(R.string.bob_neutral3)
+        ) to R.drawable.bob_neutral,
+        listOf(
+            stringResource(R.string.bob_sleep), stringResource(R.string.bob_sleep2),
+            stringResource(R.string.bob_sleep3)
+        ) to R.drawable.bob_sleep
     )
+
 
     val nunito = FontFamily(
         Font(R.font.nunito_black, FontWeight.Normal)
@@ -86,33 +117,66 @@ fun MainScreen(paddingValues: PaddingValues) {
     ) {
         BannerAdView(Modifier.fillMaxWidth())
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 32.dp, bottom = 64.dp, start = 32.dp, end = 32.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 32.dp, bottom = 64.dp, start = 32.dp, end = 32.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             val bobEntry = bobMap.entries.random()
             Image(
                 painter = painterResource(bobEntry.value),
-                contentDescription = "Cry Bob Gif",
+                contentDescription = "Bob Gif",
                 modifier = Modifier
                     .size(75.dp),
                 contentScale = ContentScale.Fit
             )
             Text(
-                text = bobEntry.key,
+                text = bobEntry.key.random(),
                 fontSize = 17.sp,
                 fontFamily = nunito,
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
-        Text(
-            text = "${drinkingGlass * 200}ml / ${waterQuantity}ml",
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
-            color = Color.Black,
-            fontFamily = nunito,
-            modifier = Modifier.padding(bottom = 12.dp)
-        )
+        Row(
+            modifier = Modifier.padding(vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.decrease_glass),
+                contentDescription = "Glass Icon",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(shape = CircleShape)
+                    .clickable {
+                        if (drinkingGlass > 0) {
+                            settingsViewModel.updateDrinkingGlass(drinkingGlass - 1)
+                        }
+                    }
+            )
+            Text(
+                text = "${drinkingGlass * 200}ml / ${waterQuantity}ml",
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.Black,
+                fontFamily = nunito,
+                modifier = Modifier.padding(horizontal = 12.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.increase_glass),
+                contentDescription = "Glass Icon",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(shape = CircleShape)
+                    .clickable {
+                        if (drinkingGlass < goalGLass) {
+                            settingsViewModel.updateDrinkingGlass(drinkingGlass + 1)
+                        }
+                    }
+            )
+        }
         Column(
             modifier = Modifier.padding(horizontal = 32.dp)
         ) {
@@ -127,8 +191,7 @@ fun MainScreen(paddingValues: PaddingValues) {
                         painter = painterResource(id = R.drawable.glassofwater),
                         contentDescription = "Glass Icon",
                         modifier = Modifier
-                            .width(48.dp)
-                            .height(48.dp)
+                            .size(48.dp)
                             .alpha(alpha),
                         contentScale = ContentScale.Fit
                     )
@@ -140,7 +203,7 @@ fun MainScreen(paddingValues: PaddingValues) {
             waterQuantity = it.waterQuantity
             goalGLass = waterQuantity / 200
             intervalMinutes = 840 / goalGLass
-            drinkingGlass = (((currentHour - 9) * 60) + currentMinute) / intervalMinutes
+            drinkingGlass = it.drinkingGlass
         }
     }
 }
