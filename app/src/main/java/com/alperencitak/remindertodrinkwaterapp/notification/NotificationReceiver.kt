@@ -2,6 +2,7 @@ package com.alperencitak.remindertodrinkwaterapp.notification
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,17 +10,28 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import android.content.BroadcastReceiver
+import com.alperencitak.remindertodrinkwaterapp.MainActivity
 import com.alperencitak.remindertodrinkwaterapp.R
 import java.util.Locale
 
 @SuppressLint("RestrictedApi")
 class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
+        val notificationIntent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         val notification = NotificationCompat.Builder(context, "reminder_notifications")
             .setContentTitle(getContentTitle())
             .setContentText(getContentText())
             .setSmallIcon(R.drawable.glassofwater)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
             .build()
 
         val notificationManager = NotificationManagerCompat.from(context)
