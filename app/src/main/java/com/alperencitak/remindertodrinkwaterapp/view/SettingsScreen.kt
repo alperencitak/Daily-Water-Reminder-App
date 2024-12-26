@@ -1,6 +1,5 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
-import android.app.Application.MODE_PRIVATE
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.background
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +19,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -29,7 +26,6 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -60,8 +56,6 @@ import com.alperencitak.remindertodrinkwaterapp.viewmodel.SettingsViewModel
 @Composable
 fun SettingsScreen(paddingValues: PaddingValues) {
     val settingsViewModel: SettingsViewModel = hiltViewModel()
-    val settings by settingsViewModel.settings.collectAsState()
-    var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
     val nunito = FontFamily(
         Font(R.font.nunito_black, FontWeight.Normal)
     )
@@ -332,49 +326,5 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 }
             )
         }
-//        Card(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .clip(RoundedCornerShape(32.dp))
-//                .padding(top = 16.dp),
-//            colors = CardDefaults.cardColors(
-//                containerColor = Color.White
-//            )
-//        ) {
-//
-//            settings?.let {
-//                silentModeChecked = it.isSilentMode
-//            }
-//
-//            Row(
-//                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp, horizontal = 16.dp),
-//                verticalAlignment = Alignment.CenterVertically,
-//                horizontalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                Text(
-//                    text = stringResource(R.string.mute_notifications),
-//                    fontWeight = FontWeight.Bold,
-//                    fontSize = 18.sp,
-//                    fontFamily = nunito,
-//                    color = Color.Black,
-//                    modifier = Modifier.padding(start = 12.dp)
-//                )
-//                Switch(
-//                    modifier = Modifier.padding(end = 12.dp),
-//                    checked = silentModeChecked,
-//                    onCheckedChange = {
-//                        silentModeChecked = it
-//                        settingsViewModel.toggleSilentMode()
-//                    },
-//                    thumbContent = {
-//                        Icon(
-//                            imageVector = if (silentModeChecked) Icons.Default.Check else Icons.Default.Clear,
-//                            contentDescription = "Check Icon",
-//                            modifier = Modifier.size(22.dp)
-//                        )
-//                    }
-//                )
-//            }
-//        }
     }
 }

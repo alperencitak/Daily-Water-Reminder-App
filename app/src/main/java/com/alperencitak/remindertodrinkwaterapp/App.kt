@@ -5,14 +5,12 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.alperencitak.remindertodrinkwaterapp.notification.cancelReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.notification.scheduleReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.repository.SettingsRepository
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.Locale

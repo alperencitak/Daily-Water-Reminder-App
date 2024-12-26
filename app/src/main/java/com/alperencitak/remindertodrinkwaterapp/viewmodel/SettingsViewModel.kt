@@ -33,19 +33,6 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun toggleSilentMode() {
-        viewModelScope.launch {
-            try {
-                if (_settings.value != null) {
-                    settingsRepository.updateSilentMode(!_settings.value!!.isSilentMode)
-                    loadSettings()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     fun updateWaterQuantity(quantity: Int) {
         viewModelScope.launch {
             settingsRepository.updateWaterQuantity(quantity)
