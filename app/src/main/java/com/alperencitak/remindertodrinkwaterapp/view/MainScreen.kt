@@ -48,9 +48,18 @@ import java.util.Calendar
 
 @Composable
 fun MainScreen(paddingValues: PaddingValues) {
+
     val settingsViewModel: SettingsViewModel = hiltViewModel()
     val settings by settingsViewModel.settings.collectAsState()
-    var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
+
+    var waterQuantity by remember { mutableIntStateOf(settings?.waterQuantity ?: 2400) }
+    var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
+    var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
+    var drinkingWaterQuantity by remember { mutableIntStateOf(drinkingGlass*200) }
+    var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
+
+    val nunito = FontFamily( Font(R.font.nunito_black, FontWeight.Normal) )
+
     val bobMap = mapOf(
         listOf(
             stringResource(R.string.bob_lol), stringResource(R.string.bob_lol2),
@@ -89,12 +98,9 @@ fun MainScreen(paddingValues: PaddingValues) {
             stringResource(R.string.bob_sleep3)
         ) to R.drawable.bob_sleep
     )
-    var waterQuantity by remember { mutableIntStateOf(settings?.waterQuantity ?: 2400) }
-    var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
-    var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
-    var drinkingWaterQuantity by remember { mutableIntStateOf(drinkingGlass*200) }
-    var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
-    val nunito = FontFamily( Font(R.font.nunito_black, FontWeight.Normal) )
+    val bobEntry = remember { bobMap.entries.random() }
+    val bobEntryRandomValue = remember { bobEntry.value }
+    val bobEntryRandomKey = remember { bobEntry.key.random() }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -118,16 +124,15 @@ fun MainScreen(paddingValues: PaddingValues) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            val bobEntry = bobMap.entries.random()
             Image(
-                painter = painterResource(bobEntry.value),
+                painter = painterResource(bobEntryRandomValue),
                 contentDescription = "Bob Gif",
                 modifier = Modifier
                     .size(75.dp),
                 contentScale = ContentScale.Fit
             )
             Text(
-                text = bobEntry.key.random(),
+                text = bobEntryRandomKey,
                 fontSize = 17.sp,
                 fontFamily = nunito,
                 modifier = Modifier.padding(start = 16.dp)
@@ -196,7 +201,6 @@ fun MainScreen(paddingValues: PaddingValues) {
             }
         }
         settings?.let {
-            silentModeChecked = it.isSilentMode
             waterQuantity = it.waterQuantity
             goalGLass = waterQuantity / 200
             intervalMinutes = 840 / goalGLass
