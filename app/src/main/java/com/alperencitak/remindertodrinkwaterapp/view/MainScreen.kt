@@ -52,11 +52,6 @@ fun MainScreen(paddingValues: PaddingValues) {
     val settings by settingsViewModel.settings.collectAsState()
     var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
     var waterQuantity by remember { mutableIntStateOf(settings?.waterQuantity ?: 2400) }
-    var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
-    var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
-    val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-    var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
-
     val bobMap = mapOf(
         listOf(
             stringResource(R.string.bob_lol), stringResource(R.string.bob_lol2),
@@ -95,11 +90,10 @@ fun MainScreen(paddingValues: PaddingValues) {
             stringResource(R.string.bob_sleep3)
         ) to R.drawable.bob_sleep
     )
-
-
-    val nunito = FontFamily(
-        Font(R.font.nunito_black, FontWeight.Normal)
-    )
+    var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
+    var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
+    var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
+    val nunito = FontFamily( Font(R.font.nunito_black, FontWeight.Normal) )
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -186,7 +180,7 @@ fun MainScreen(paddingValues: PaddingValues) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(goalGLass) { index ->
-                    val alpha = if (currentHour !in 9..23 || index + 1 > drinkingGlass) 0.5f else 1f
+                    val alpha = if (index + 1 > drinkingGlass) 0.5f else 1f
                     Image(
                         painter = painterResource(id = R.drawable.glassofwater),
                         contentDescription = "Glass Icon",

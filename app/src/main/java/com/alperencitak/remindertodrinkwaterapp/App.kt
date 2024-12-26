@@ -30,31 +30,18 @@ class App : Application() {
         MobileAds.initialize(this)
         createNotificationChannel()
 
-        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
-        val isScheduled = sharedPreferences.getBoolean("is_scheduled", false)
-
         CoroutineScope(Dispatchers.Default).launch {
             settingsRepository.settings.collect{ setting ->
-
                 val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                if(!setting.isScheduled){
+                    val intervalMinutes = 840 / (setting.waterQuantity / 200)
+                    scheduleReminderNotification(this@App, intervalMinutes)
 
-                if(!setting.isSilentMode || currentHour in 9..23){
-
-                    if(!isScheduled){
-                        val intervalMinutes = 840 / (setting.waterQuantity / 200)
-                        println("test")
-                        scheduleReminderNotification(this@App, intervalMinutes)
-
-                        sharedPreferences.edit()
-                            .putBoolean("is_scheduled", true)
-                            .apply()
-                    }
-
-                }else{
-                    settingsRepository.updateDrinkingGlass(0)
-                    cancelReminderNotification(this@App)
+                    settingsRepository.updateIsScheduled(true)
                 }
-
+                if(currentHour !in 9..23){
+                    settingsRepository.updateDrinkingGlass(0)
+                }
             }
         }
     }
@@ -84,9 +71,9 @@ class App : Application() {
 
     private fun getChannelDescription(): String {
         return if (Locale.getDefault().language == "tr") {
-            "Her 10 dakikada su içme hatırlatmaları."
+            "Günlük su içme hatırlatmaları."
         } else {
-            "Reminders to drink water every 10 minutes."
+            "Daily reminders to drink water."
         }
     }
 

@@ -26,6 +26,7 @@ class SettingsRepository @Inject constructor(
         val SILENT_MODE = booleanPreferencesKey("silent_mode")
         val WATER_QUANTITY = intPreferencesKey("water_quantity")
         val DRINKING_GLASS = intPreferencesKey("drinking_glass")
+        val IS_SCHEDULED = booleanPreferencesKey("is_scheduled")
     }
 
     val settings: Flow<Settings> = context.dataStore.data
@@ -33,7 +34,8 @@ class SettingsRepository @Inject constructor(
             Settings(
                 isSilentMode = preferences[SettingsKeys.SILENT_MODE] ?: false,
                 waterQuantity = preferences[SettingsKeys.WATER_QUANTITY] ?: 2400,
-                drinkingGlass = preferences[SettingsKeys.DRINKING_GLASS] ?: 0
+                drinkingGlass = preferences[SettingsKeys.DRINKING_GLASS] ?: 0,
+                isScheduled = preferences[SettingsKeys.IS_SCHEDULED] ?: false
             )
         }
 
@@ -52,6 +54,12 @@ class SettingsRepository @Inject constructor(
     suspend fun updateDrinkingGlass(value: Int){
         context.dataStore.edit { prefences ->
             prefences[SettingsKeys.DRINKING_GLASS] = value
+        }
+    }
+
+    suspend fun updateIsScheduled(bool: Boolean){
+        context.dataStore.edit { prefences ->
+            prefences[SettingsKeys.IS_SCHEDULED] = bool
         }
     }
 }

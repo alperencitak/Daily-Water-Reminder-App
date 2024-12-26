@@ -60,4 +60,11 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun updateIsScheduled(bool: Boolean){
+        viewModelScope.launch {
+            settingsRepository.updateIsScheduled(bool)
+            loadSettings()
+        }
+    }
+
 }

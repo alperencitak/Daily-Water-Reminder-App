@@ -24,8 +24,8 @@ fun scheduleReminderNotification(context: Context, intervalMinutes: Int) {
         return
     }
 
-    val triggerTime = System.currentTimeMillis()
     val interval = intervalMinutes * 60 * 1000L
+    val triggerTime = System.currentTimeMillis() + interval
 
     alarmManager.setRepeating(
         AlarmManager.RTC_WAKEUP,
