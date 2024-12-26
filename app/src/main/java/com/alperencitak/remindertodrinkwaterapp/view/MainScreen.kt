@@ -51,7 +51,6 @@ fun MainScreen(paddingValues: PaddingValues) {
     val settingsViewModel: SettingsViewModel = hiltViewModel()
     val settings by settingsViewModel.settings.collectAsState()
     var silentModeChecked by remember { mutableStateOf(settings?.isSilentMode ?: false) }
-    var waterQuantity by remember { mutableIntStateOf(settings?.waterQuantity ?: 2400) }
     val bobMap = mapOf(
         listOf(
             stringResource(R.string.bob_lol), stringResource(R.string.bob_lol2),
@@ -90,8 +89,10 @@ fun MainScreen(paddingValues: PaddingValues) {
             stringResource(R.string.bob_sleep3)
         ) to R.drawable.bob_sleep
     )
+    var waterQuantity by remember { mutableIntStateOf(settings?.waterQuantity ?: 2400) }
     var drinkingGlass by remember { mutableIntStateOf(settings?.drinkingGlass ?: 0) }
     var goalGLass by remember { mutableIntStateOf(waterQuantity / 200) }
+    var drinkingWaterQuantity by remember { mutableIntStateOf(drinkingGlass*200) }
     var intervalMinutes by remember { mutableIntStateOf(840 / goalGLass) }
     val nunito = FontFamily( Font(R.font.nunito_black, FontWeight.Normal) )
 
@@ -150,7 +151,7 @@ fun MainScreen(paddingValues: PaddingValues) {
                     }
             )
             Text(
-                text = "${drinkingGlass * 200}ml / ${waterQuantity}ml",
+                text = "${drinkingWaterQuantity}ml / ${waterQuantity}ml",
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 color = Color.Black,
@@ -167,6 +168,8 @@ fun MainScreen(paddingValues: PaddingValues) {
                     .clickable {
                         if (drinkingGlass < goalGLass) {
                             settingsViewModel.updateDrinkingGlass(drinkingGlass + 1)
+                        }else if(drinkingGlass == goalGLass){
+                            drinkingWaterQuantity = waterQuantity
                         }
                     }
             )
@@ -198,6 +201,7 @@ fun MainScreen(paddingValues: PaddingValues) {
             goalGLass = waterQuantity / 200
             intervalMinutes = 840 / goalGLass
             drinkingGlass = it.drinkingGlass
+            drinkingWaterQuantity = if(drinkingGlass==goalGLass) waterQuantity else drinkingGlass*200
         }
     }
 }
