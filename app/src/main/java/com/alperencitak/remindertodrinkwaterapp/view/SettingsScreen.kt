@@ -1,7 +1,10 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
 import android.app.Application.MODE_PRIVATE
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,11 +43,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -60,6 +65,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
     val nunito = FontFamily(
         Font(R.font.nunito_black, FontWeight.Normal)
     )
+    val context = LocalContext.current
+    val url = "https://icons8.com"
 
 
     Box(modifier = Modifier.fillMaxSize().background(LightWaterBlue))
@@ -304,6 +311,26 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     }
                 }
             }
+        }
+        Row(
+            Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Icons by ",
+                fontSize = 16.sp,
+                fontFamily = FontFamily.SansSerif
+            )
+            Text(
+                text = "Icons8",
+                fontSize = 16.sp,
+                fontFamily = FontFamily.SansSerif,
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    context.startActivity(intent)
+                }
+            )
         }
 //        Card(
 //            modifier = Modifier
