@@ -1,5 +1,6 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
+import android.app.Application.MODE_PRIVATE
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -109,7 +110,11 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     OutlinedTextField(
                         modifier = Modifier.width(108.dp),
                         value = kg,
-                        onValueChange = { kg = it },
+                        onValueChange = {
+                            if(it.matches(Regex("^\\d*\$"))){
+                                kg = it
+                            }
+                        },
                         label = { Text(text = "KG", fontFamily = nunito) },
                         singleLine = true,
                         shape = RoundedCornerShape(8.dp),
@@ -252,8 +257,10 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         modifier = Modifier.width(144.dp),
                         value = value,
                         onValueChange = {
-                            value = it
-                            isError = false
+                            if (it.matches(Regex("^\\d*\$"))) {
+                                value = it
+                                isError = false
+                            }
                         },
                         label = { Text(text = stringResource(R.string.enter_value), fontFamily = nunito) },
                         singleLine = true,
@@ -273,6 +280,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         onClick = {
                             if( value.isNotEmpty() && value.toInt() in 900..6120){
                                 settingsViewModel.updateWaterQuantity(value.toInt())
+                                settingsViewModel.updateIsScheduled(false)
+                                settingsViewModel.updateDrinkingGlass(0)
                                 showTick = true
                                 value = ""
                             }else{
