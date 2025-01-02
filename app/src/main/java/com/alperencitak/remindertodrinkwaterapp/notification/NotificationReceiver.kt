@@ -12,11 +12,20 @@ import androidx.core.app.NotificationManagerCompat
 import android.content.BroadcastReceiver
 import com.alperencitak.remindertodrinkwaterapp.MainActivity
 import com.alperencitak.remindertodrinkwaterapp.R
+import java.util.Calendar
 import java.util.Locale
 
 @SuppressLint("RestrictedApi")
 class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
+
+        val calendar = Calendar.getInstance()
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        if (currentHour !in 9..23) {
+            return
+        }
+
         val notificationIntent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             context,

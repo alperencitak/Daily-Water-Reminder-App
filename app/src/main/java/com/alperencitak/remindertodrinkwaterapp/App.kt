@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.alperencitak.remindertodrinkwaterapp.notification.cancelReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.notification.scheduleReminderNotification
 import com.alperencitak.remindertodrinkwaterapp.repository.SettingsRepository
 import com.google.android.gms.ads.MobileAds
@@ -31,14 +32,17 @@ class App : Application() {
         CoroutineScope(Dispatchers.Default).launch {
             settingsRepository.settings.collect{ setting ->
                 val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                if(!setting.isScheduled){
-                    val intervalMinutes = 840 / (setting.waterQuantity / 200)
-                    scheduleReminderNotification(this@App, intervalMinutes)
+                if(currentHour in 9..23){
+                    if(!setting.isScheduled){
+                        val intervalMinutes = 840 / (setting.waterQuantity / 200)
+                        scheduleReminderNotification(this@App, intervalMinutes)
 
-                    settingsRepository.updateIsScheduled(true)
-                }
-                if(currentHour !in 9..23){
+                        settingsRepository.updateIsScheduled(true)
+                    }
+                }else{
                     settingsRepository.updateDrinkingGlass(0)
+//                    cancelReminderNotification(this@App)
+//                    settingsRepository.updateIsScheduled(false)
                 }
             }
         }

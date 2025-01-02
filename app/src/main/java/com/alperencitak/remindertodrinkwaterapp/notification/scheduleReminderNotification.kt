@@ -17,13 +17,6 @@ fun scheduleReminderNotification(context: Context, intervalMinutes: Int) {
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
 
-    val calendar = Calendar.getInstance()
-    val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
-
-    if (currentHour !in 9..23) {
-        return
-    }
-
     val interval = intervalMinutes * 60 * 1000L
     val triggerTime = System.currentTimeMillis() + interval
 
