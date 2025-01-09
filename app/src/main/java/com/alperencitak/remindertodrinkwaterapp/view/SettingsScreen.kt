@@ -258,7 +258,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         modifier = Modifier.width(144.dp),
                         value = value,
                         onValueChange = {
-                            if (it.matches(Regex("^\\d*\$")) && it.length <= 3) {
+                            if (it.matches(Regex("^\\d*\$")) && it.length <= 4) {
                                 value = it
                                 isError = false
                             }
