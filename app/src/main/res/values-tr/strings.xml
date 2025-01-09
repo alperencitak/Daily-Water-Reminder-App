@@ -43,4 +43,5 @@
     <string name="bob_sleep">*Sessiz ol! Bob uyuyor.*</string>
     <string name="bob_sleep2">*Bob uyumadan önce su içti.*</string>
     <string name="bob_sleep3">*zzzZZZ*</string>
+    <string name="privacy_and_policy">Gizlilik Politikası</string>
 </resources>

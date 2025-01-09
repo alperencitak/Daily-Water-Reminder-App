@@ -306,6 +306,25 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 }
             }
         }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(32.dp))
+                .padding(top = 16.dp)
+                .clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/dwrprivacypolicy"))
+                    context.startActivity(intent)
+                },
+            colors = CardDefaults.cardColors(
+                containerColor = Color.White
+            )
+        ){
+            Text(
+                text = stringResource(R.string.set),
+                fontSize = 16.sp,
+                fontFamily = nunito
+            )
+        }
         Row(
             Modifier.fillMaxWidth().padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.Center

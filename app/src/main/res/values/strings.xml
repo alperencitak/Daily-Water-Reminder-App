@@ -42,5 +42,6 @@
     <string name="bob_sleep">*Shh! Bob is sleeping.*</string>
     <string name="bob_sleep2">*Bob drank water before going to sleep.*</string>
     <string name="bob_sleep3">*zzzZZZ*</string>
+    <string name="privacy_and_policy">Privacy Policy</string>
 
 </resources>
