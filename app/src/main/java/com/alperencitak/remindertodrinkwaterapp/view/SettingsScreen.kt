@@ -112,7 +112,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         modifier = Modifier.width(108.dp),
                         value = kg,
                         onValueChange = {
-                            if(it.matches(Regex("^\\d*\$"))){
+                            if(it.matches(Regex("^\\d*\$")) && it.length <= 3){
                                 kg = it
                             }
                         },
@@ -258,7 +258,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         modifier = Modifier.width(144.dp),
                         value = value,
                         onValueChange = {
-                            if (it.matches(Regex("^\\d*\$"))) {
+                            if (it.matches(Regex("^\\d*\$")) && it.length <= 3) {
                                 value = it
                                 isError = false
                             }
@@ -320,9 +320,10 @@ fun SettingsScreen(paddingValues: PaddingValues) {
             )
         ){
             Text(
-                text = stringResource(R.string.set),
-                fontSize = 16.sp,
-                fontFamily = nunito
+                text = stringResource(R.string.privacy_and_policy),
+                fontSize = 18.sp,
+                fontFamily = nunito,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 6.dp)
             )
         }
         Row(
