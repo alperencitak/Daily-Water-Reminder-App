@@ -36,13 +36,11 @@ class App : Application() {
                     if(!setting.isScheduled){
                         val intervalMinutes = 840 / (setting.waterQuantity / 200)
                         scheduleReminderNotification(this@App, intervalMinutes)
-
                         settingsRepository.updateIsScheduled(true)
                     }
                 }else{
                     settingsRepository.updateDrinkingGlass(0)
-//                    cancelReminderNotification(this@App)
-//                    settingsRepository.updateIsScheduled(false)
+                    settingsRepository.updateIsScheduled(false)
                 }
             }
         }
