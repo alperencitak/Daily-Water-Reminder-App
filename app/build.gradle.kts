@@ -17,8 +17,8 @@ android {
         applicationId = "com.alperencitak.remindertodrinkwaterapp"
         minSdk = 24
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["ADMOB_APP_ID"] = ADMOB_APP_ID
         buildConfigField("String", "ADMOB_AD_UNIT_ID", ADMOB_AD_UNIT_ID)

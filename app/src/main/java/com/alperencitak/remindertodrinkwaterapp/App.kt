@@ -31,7 +31,7 @@ class App : Application() {
 
         CoroutineScope(Dispatchers.Default).launch {
             settingsRepository.settings.collect{ setting ->
-                
+
                 val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
                 if(!setting.isScheduled){
                     val intervalMinutes = 840 / (setting.waterQuantity / 200)
