@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import android.content.BroadcastReceiver
+import android.util.Log
 import com.alperencitak.remindertodrinkwaterapp.MainActivity
 import com.alperencitak.remindertodrinkwaterapp.R
 import java.util.Calendar
@@ -18,11 +19,13 @@ import java.util.Locale
 @SuppressLint("RestrictedApi")
 class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
-
+        Log.d("WaterReminder", "NotificationReceiver.onReceive çağrıldı")
         val calendar = Calendar.getInstance()
         val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        Log.d("WaterReminder", "Şu anki saat: $currentHour")
 
         if (currentHour !in 9..23) {
+            Log.d("WaterReminder", "Saat aralık dışında (9-23), bildirim gösterilmeyecek")
             return
         }
 
@@ -44,14 +47,18 @@ class NotificationReceiver : BroadcastReceiver() {
             .build()
 
         val notificationManager = NotificationManagerCompat.from(context)
-        
+
+        Log.d("WaterReminder", "Bildirim oluşturuldu")
+
         if (ActivityCompat.checkSelfPermission(context,Manifest.permission.POST_NOTIFICATIONS)
             != PackageManager.PERMISSION_GRANTED
         ) {
+            Log.d("WaterReminder", "Bildirim izni yok, bildirim gösterilemedi")
             return
         }
 
         notificationManager.notify(1, notification)
+        Log.d("WaterReminder", "Bildirim gönderildi")
     }
 
     private fun getContentTitle() : String{
