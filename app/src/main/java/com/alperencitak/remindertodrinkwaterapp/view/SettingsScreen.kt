@@ -41,6 +41,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -109,7 +111,9 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         modifier = Modifier.padding(end = 16.dp)
                     )
                     OutlinedTextField(
-                        modifier = Modifier.width(108.dp),
+                        modifier = Modifier
+                            .width(108.dp)
+                            .semantics { contentDescription = "KG text field" },
                         value = kg,
                         onValueChange = {
                             if(it.matches(Regex("^\\d*\$")) && it.length <= 3){
@@ -136,7 +140,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         onCheckedChange = {
                             selectedCheckbox = 3
                             perKgOfWater = 36
-                        }
+                        },
+                        modifier = Modifier.semantics { contentDescription = "1. Checkbox" }
                     )
                     Text(
                         text = stringResource(R.string.activity_4),
@@ -153,7 +158,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         onCheckedChange = {
                             selectedCheckbox = 2
                             perKgOfWater = 34
-                        }
+                        },
+                        modifier = Modifier.semantics { contentDescription = "2. Checkbox" }
                     )
                     Text(
                         text = stringResource(R.string.activity_3),
@@ -170,7 +176,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         onCheckedChange = {
                             selectedCheckbox =1
                             perKgOfWater = 32
-                        }
+                        },
+                        modifier = Modifier.semantics { contentDescription = "3. Checkbox" }
                     )
                     Text(
                         text = stringResource(R.string.activity_2),
@@ -187,7 +194,8 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                         onCheckedChange = {
                             selectedCheckbox = 0
                             perKgOfWater = 30
-                        }
+                        },
+                        modifier = Modifier.semantics { contentDescription = "4. Checkbox" }
                     )
                     Text(
                         text = stringResource(R.string.activity_1),
@@ -255,7 +263,9 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-                        modifier = Modifier.width(144.dp),
+                        modifier = Modifier
+                            .width(144.dp)
+                            .semantics { contentDescription = "Manually set the amount of water per day text field" },
                         value = value,
                         onValueChange = {
                             if (it.matches(Regex("^\\d*\$")) && it.length <= 4) {
@@ -311,6 +321,7 @@ fun SettingsScreen(paddingValues: PaddingValues) {
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(32.dp))
                 .padding(top = 16.dp)
+                .semantics { contentDescription = "Privacy & Policy Page" }
                 .clickable {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/dwrprivacypolicy"))
                     context.startActivity(intent)

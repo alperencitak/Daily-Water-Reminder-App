@@ -137,7 +137,7 @@ fun MainScreen(paddingValues: PaddingValues) {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.decrease_glass),
-                contentDescription = "Glass Icon",
+                contentDescription = "Decrease Glass Icon",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(64.dp)
@@ -158,7 +158,7 @@ fun MainScreen(paddingValues: PaddingValues) {
             )
             Image(
                 painter = painterResource(id = R.drawable.increase_glass),
-                contentDescription = "Glass Icon",
+                contentDescription = "Increase Glass Icon",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(64.dp)
@@ -184,7 +184,7 @@ fun MainScreen(paddingValues: PaddingValues) {
                     val alpha = if (index + 1 > drinkingGlass) 0.5f else 1f
                     Image(
                         painter = painterResource(id = R.drawable.glassofwater),
-                        contentDescription = "Glass Icon",
+                        contentDescription = "${index+1}.Glass Icon",
                         modifier = Modifier
                             .size(48.dp)
                             .alpha(alpha),
