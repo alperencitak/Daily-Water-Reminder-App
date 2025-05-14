@@ -10,4 +10,4 @@ Daily Water Reminder is an open source project that reminds the user to drink wa
   
 ## **Screenshots**
 
-![Image](https://github.com/user-attachments/assets/99911d7d-98fb-4b6d-be2d-947effaa2bb0) ![Image](https://github.com/user-attachments/assets/9672ee69-1ac3-47ba-8ee3-ff92a0a308fc)
+![Image](https://github.com/user-attachments/assets/b8a4e444-b569-4c81-974e-a5f4346d60f8) ![Image](https://github.com/user-attachments/assets/d5565e38-fc0b-423f-a44a-80b235df8266)
