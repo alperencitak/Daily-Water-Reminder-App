@@ -1,6 +1,7 @@
 package com.alperencitak.remindertodrinkwaterapp.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +15,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -96,109 +102,171 @@ fun MainScreen(paddingValues: PaddingValues) {
     val bobEntryRandomKey = remember { bobEntry.key.random() }
 
     Box(modifier = Modifier.fillMaxSize()) {
+
         Image(
             painter = painterResource(id = R.drawable.bg3),
             contentDescription = "Background Image",
-            modifier = Modifier.matchParentSize(),
+            modifier = Modifier
+                .matchParentSize()
+                .alpha(0.85f),
             contentScale = ContentScale.Crop
         )
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 64.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        BannerAdView(Modifier.fillMaxWidth())
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 32.dp, bottom = 64.dp, start = 32.dp, end = 32.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            Image(
-                painter = painterResource(bobEntryRandomValue),
-                contentDescription = "Bob Gif",
-                modifier = Modifier
-                    .size(75.dp),
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                text = bobEntryRandomKey,
-                fontSize = 17.sp,
-                fontFamily = nunito,
-                modifier = Modifier.padding(start = 16.dp)
-            )
-        }
-        Row(
-            modifier = Modifier.padding(vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.decrease_glass),
-                contentDescription = "Decrease Glass Icon",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(64.dp)
-                    .clip(shape = CircleShape)
-                    .clickable {
-                        if (drinkingGlass > 0) {
-                            settingsViewModel.updateDrinkingGlass(drinkingGlass - 1)
-                        }
-                    }
-            )
-            Text(
-                text = "${drinkingWaterQuantity}ml / ${waterQuantity}ml",
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-                color = Color.Black,
-                fontFamily = nunito,
-                modifier = Modifier.padding(horizontal = 12.dp)
-            )
-            Image(
-                painter = painterResource(id = R.drawable.increase_glass),
-                contentDescription = "Increase Glass Icon",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(64.dp)
-                    .clip(shape = CircleShape)
-                    .clickable {
-                        if (drinkingGlass < goalGLass) {
-                            settingsViewModel.updateDrinkingGlass(drinkingGlass + 1)
-                        }else if(drinkingGlass == goalGLass){
-                            drinkingWaterQuantity = waterQuantity
-                        }
-                    }
-            )
-        }
+
         Column(
-            modifier = Modifier.padding(horizontal = 32.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 64.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 48.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            BannerAdView(Modifier.fillMaxWidth())
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp, vertical = 16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
+                )
             ) {
-                items(goalGLass) { index ->
-                    val alpha = if (index + 1 > drinkingGlass) 0.5f else 1f
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
                     Image(
-                        painter = painterResource(id = R.drawable.glassofwater),
-                        contentDescription = "${index+1}.Glass Icon",
+                        painter = painterResource(bobEntryRandomValue),
+                        contentDescription = "Bob Gif",
                         modifier = Modifier
-                            .size(48.dp)
-                            .alpha(alpha),
+                            .size(85.dp)
+                            .clip(RoundedCornerShape(12.dp)),
                         contentScale = ContentScale.Fit
+                    )
+                    Text(
+                        text = bobEntryRandomKey,
+                        fontSize = 18.sp,
+                        fontFamily = nunito,
+                        modifier = Modifier.padding(start = 16.dp),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
+
+            Card(
+                modifier = Modifier
+                    .padding(vertical = 24.dp, horizontal = 32.dp)
+                    .fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(4.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    IconButton(
+                        onClick = {
+                            if (drinkingGlass > 0) {
+                                settingsViewModel.updateDrinkingGlass(drinkingGlass - 1)
+                            }
+                        },
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.decrease_glass),
+                            contentDescription = "Decrease Glass Icon",
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "${drinkingWaterQuantity}ml",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            fontFamily = nunito
+                        )
+                        Text(
+                            text = "/ ${waterQuantity}ml",
+                            fontSize = 16.sp,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
+                            fontFamily = nunito
+                        )
+                    }
+
+                    IconButton(
+                        onClick = {
+                            if (drinkingGlass < goalGLass) {
+                                settingsViewModel.updateDrinkingGlass(drinkingGlass + 1)
+                            } else if(drinkingGlass == goalGLass) {
+                                drinkingWaterQuantity = waterQuantity
+                            }
+                        },
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.increase_glass),
+                            contentDescription = "Increase Glass Icon",
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
+                }
+            }
+
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(4.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
+                )
+            ) {
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(minSize = 52.dp),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(goalGLass) { index ->
+                        val alpha = if (index + 1 > drinkingGlass) 0.5f else 1f
+                        Image(
+                            painter = painterResource(id = R.drawable.glassofwater),
+                            contentDescription = "${index+1}.Glass Icon",
+                            modifier = Modifier
+                                .size(52.dp)
+                                .alpha(alpha)
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Fit
+                        )
+                    }
+                }
+            }
         }
-        settings?.let {
-            waterQuantity = it.waterQuantity
-            goalGLass = waterQuantity / 200
-            intervalMinutes = 840 / goalGLass
-            drinkingGlass = it.drinkingGlass
-            drinkingWaterQuantity = if(drinkingGlass==goalGLass) waterQuantity else drinkingGlass*200
-        }
+    }
+
+    settings?.let {
+        waterQuantity = it.waterQuantity
+        goalGLass = waterQuantity / 200
+        intervalMinutes = 840 / goalGLass
+        drinkingGlass = it.drinkingGlass
+        drinkingWaterQuantity = if(drinkingGlass==goalGLass) waterQuantity else drinkingGlass*200
     }
 }
