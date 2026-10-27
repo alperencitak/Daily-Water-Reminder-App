@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monochrome status bar icon (water drop). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12,2.5C12,2.5 5,10.2 5,15a7,7 0,0 0,14 0C19,10.2 12,2.5 12,2.5zM9.2,15.4c0.3,1.6 1.6,2.8 3.2,3l-0.2,1.5c-2.3,-0.3 -4.1,-2 -4.5,-4.2z" />
+</vector>
