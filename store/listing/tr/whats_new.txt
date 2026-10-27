@@ -1,0 +1,7 @@
+Sürüm 4.0 ile uygulama yepyeni!
+• Baştan tasarlandı, daha akıcı ve hızlı
+• Uyanma ve yatma saatin arasında daha akıllı hatırlatmalar
+• Bildirimden doğrudan su kaydı
+• Haftalık grafik ve seri takibiyle geçmiş
+• Koyu tema
+• Yeni Bob, artık yüz ifadeleriyle

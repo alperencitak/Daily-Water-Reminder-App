@@ -1,0 +1,7 @@
+Version 4.0 is a brand-new app!
+• Completely redesigned, smoother and faster
+• Smarter reminders between your wake-up and bedtime
+• Log water right from the notification
+• History with weekly chart and streaks
+• Dark theme
+• New Bob, now with expressions

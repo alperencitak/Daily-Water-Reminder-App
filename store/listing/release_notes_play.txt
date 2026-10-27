@@ -1,0 +1,18 @@
+<tr-TR>
+Sürüm 4.0 ile uygulama yepyeni!
+• Baştan tasarlandı, daha akıcı ve hızlı
+• Uyanma ve yatma saatin arasında daha akıllı hatırlatmalar
+• Bildirimden doğrudan su kaydı
+• Haftalık grafik ve seri takibiyle geçmiş
+• Koyu tema
+• Yeni Bob, artık yüz ifadeleriyle
+</tr-TR>
+<en-US>
+Version 4.0 is a brand-new app!
+• Completely redesigned, smoother and faster
+• Smarter reminders between your wake-up and bedtime
+• Log water right from the notification
+• History with weekly chart and streaks
+• Dark theme
+• New Bob, now with expressions
+</en-US>

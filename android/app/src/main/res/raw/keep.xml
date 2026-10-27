@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keeps resources that are only referenced by name from Dart (R8 resource shrinking). -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_water,@drawable/ic_action_drink,@mipmap/app_icon" />

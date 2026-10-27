@@ -1,0 +1,235 @@
+{
+  "@@locale": "en",
+  "appTitle": "Daily Water Reminder",
+  "navToday": "Today",
+  "navHistory": "History",
+  "navSettings": "Settings",
+  "goalOf": "of {goal} ml",
+  "@goalOf": {
+    "placeholders": {
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "remaining": "{ml} ml to go",
+  "@remaining": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "goalReached": "Goal reached! 🎉",
+  "glassesProgress": "{count} / {total} glasses",
+  "@glassesProgress": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "addWater": "Add water",
+  "customAmount": "Custom",
+  "customAmountTitle": "How much did you drink?",
+  "undo": "Undo",
+  "added": "+{ml} ml added",
+  "@added": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "todayLog": "Today's log",
+  "noEntriesYet": "No water logged yet today. Bob is waiting! 💧",
+  "deleteEntry": "Entry deleted",
+  "nextReminder": "Next reminder at {time}",
+  "@nextReminder": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "remindersOff": "Reminders are off",
+  "remindersDoneToday": "No more reminders today",
+  "streakDays": "{count, plural, =0{No streak yet} =1{1 day streak} other{{count} day streak}}",
+  "@streakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "last7Days": "Last 7 days",
+  "statAverage": "Daily average",
+  "statBestStreak": "Best streak",
+  "statCurrentStreak": "Current streak",
+  "statGoalDays": "Goals in 30 days",
+  "daysUnit": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysUnit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pastDays": "Past days",
+  "noHistory": "Your history will appear here once you start logging water.",
+  "sectionGoal": "Daily goal",
+  "calculateCardTitle": "Calculate your daily water needs",
+  "weight": "Weight",
+  "selectDailyActivity": "Select your daily activity level:",
+  "activity1": "I move little during the day",
+  "activity2": "I move a lot during the day",
+  "activity3": "I do light sports",
+  "activity4": "I do heavy sports",
+  "chooseOneActivity": "Choose one activity!",
+  "enterValidWeight": "Enter a valid weight (30-170 kg)!",
+  "calculate": "Calculate",
+  "calculatedResult": "{ml} ml/day",
+  "@calculatedResult": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "useAsGoal": "Use as my goal",
+  "manuallySetWaterQuantity": "Manually set the amount of water per day",
+  "enterValue": "Enter value (ml)",
+  "invalidGoal": "Enter a value between 900 and 6120 ml",
+  "set": "SET",
+  "goalUpdated": "Daily goal set to {ml} ml",
+  "@goalUpdated": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "currentGoal": "Current goal: {ml} ml",
+  "@currentGoal": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "cupSize": "Default glass size",
+  "sectionReminders": "Reminders",
+  "reminderNotifications": "Reminder notifications",
+  "reminderNotificationsDesc": "Regular reminders throughout the day",
+  "wakeTime": "Start (wake up)",
+  "sleepTime": "End (bed time)",
+  "interval": "Remind every",
+  "intervalAuto": "Automatic ({minutes} min)",
+  "@intervalAuto": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{minutes} min",
+  "@minutesShort": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "stopWhenGoalReached": "Stop for the day when goal is reached",
+  "smartSnooze": "Skip a reminder if I just drank",
+  "testNotification": "Send a test notification",
+  "notificationsBlocked": "Notifications are blocked. Tap to allow them so reminders can reach you.",
+  "openSettings": "Open settings",
+  "remindersPerDay": "{count} reminders per day",
+  "@remindersPerDay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sectionAppearance": "Appearance",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "sectionAbout": "About",
+  "privacyPolicy": "Privacy Policy",
+  "privacyOptions": "Ad privacy options",
+  "iconsBy": "Icons by Icons8",
+  "version": "Version {version}",
+  "@version": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "permissionTitle": "Stay hydrated with reminders",
+  "permissionBody": "Allow notifications so Bob can gently remind you to drink water throughout the day. You can change the times anytime.",
+  "permissionAllow": "Allow",
+  "permissionLater": "Not now",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "notifChannelName": "Reminder Notifications",
+  "notifChannelDesc": "Daily reminders to drink water.",
+  "notifTitle": "Time to Drink Water!",
+  "notifActionDrink": "I drank {ml} ml",
+  "@notifActionDrink": {
+    "placeholders": {
+      "ml": {
+        "type": "int"
+      }
+    }
+  },
+  "notifActionSnooze": "Remind in 15 min",
+  "notifMorningTitle": "Good morning! ☀️",
+  "notifMorningBody": "Start your day with a glass of water.",
+  "notifTestBody": "Reminders are working. Bob says hi! 👋",
+  "greetMorning": "Good morning",
+  "greetAfternoon": "Good afternoon",
+  "greetEvening": "Good evening",
+  "greetNight": "Good night",
+  "percentDone": "{percent}% done",
+  "@percentDone": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "quickAdd": "Quick add",
+  "permBullet1": "Gentle reminders through your day",
+  "permBullet2": "Goes quiet once you hit your goal",
+  "permBullet3": "Log a glass right from the notification",
+  "dailyGoal": "Daily goal",
+  "enterManually": "Enter manually",
+  "activityLevel": "Activity level",
+  "activityShort1": "Calm",
+  "activityShort2": "Active",
+  "activityShort3": "Light sports",
+  "activityShort4": "Heavy sports",
+  "recommendedForYou": "Recommended for you",
+  "reminderHours": "Reminder hours",
+  "smartReminders": "Smart reminders",
+  "intervalAutoShort": "Auto",
+  "goalLabel": "Goal",
+  "drinksCount": "{count, plural, =0{No drinks yet} =1{1 drink} other{{count} drinks}}",
+  "@drinksCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tapBob": "Tap Bob for a new tip",
+  "cupSizeCustomTitle": "Glass size",
+  "invalidCup": "Enter a value between 50 and 1500 ml"
+}
